@@ -32,3 +32,18 @@ if grep -q isAudioServerUid\(callingUid\) frameworks/av/services/audioflinger/Au
 echo "Applying FM routing patch"
 sed -i 's/isAudioServerUid(callingUid)/isAudioServerOrSystemServerUid(callingUid)/g' frameworks/av/services/audioflinger/AudioFlinger.cpp
 fi
+
+if [ -d external/faceunlock ] && [ ! -d external/faceunlock/prebuilt/libs/arm ]; then
+    echo "Adding 32-bit FaceUnlock libs..."
+    cd external/faceunlock || exit 0
+    git remote add tmp https://github.com/eurekadevelopment/android_external_faceunlock >/dev/null 2>&1
+    git fetch tmp >/dev/null 2>&1
+    git cherry-pick 951a19b65d2d92a3df8b6ff6c86f51163d113138 >/dev/null 2>&1
+    if [ "$?" == "1" ]; then
+        git cherry-pick --abort >/dev/null 2>&1
+        echo "Failed to add 32-bit libs!"
+    else
+        echo "Done!"
+    fi
+    cd - >/dev/null 2>&1
+fi
