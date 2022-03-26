@@ -18,13 +18,6 @@ USE_LEGACY_BOOTANIMATION := true
 PRODUCT_ENFORCE_RRO_TARGETS := framework-res SystemUI Bluetooth
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS := # leave it empty
 
-# Disable APEX compression
-# Keep this after including updatable_apex.mk
-PRODUCT_COMPRESSED_APEX := false
-
-# Audio
-TARGET_EXCLUDES_AUDIOFX := true
-
 PRODUCT_PACKAGES += \
     android.hardware.audio@7.0-impl \
     android.hardware.audio.service \
@@ -301,7 +294,6 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sysconfig/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides-bt.xml \
     $(LOCAL_PATH)/configs/sysconfig/pixel_eureka.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_eureka.xml
-
 
 # Thermal
 PRODUCT_PACKAGES += \
