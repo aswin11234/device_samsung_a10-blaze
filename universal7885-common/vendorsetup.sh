@@ -1,3 +1,4 @@
+FM_PATH="packages/apps/FMRadio"
 rm -rf hardware/samsung
 if [ -e ~/.git-credentials ]; then
 MODE="https://"
@@ -46,4 +47,9 @@ if [ -d external/faceunlock ] && [ ! -d external/faceunlock/prebuilt/libs/arm ];
         echo "Done!"
     fi
     cd - >/dev/null 2>&1
+fi
+# Remove multiple declared FMRadio path (we have our own FMRadio and this cause build error)
+if [ -d "$FM_PATH" ]; then 
+echo "Remove FMRadio from ROM Source"
+rm -Rf $FM_PATH; 
 fi
