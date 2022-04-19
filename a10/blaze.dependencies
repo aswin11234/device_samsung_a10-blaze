@@ -1,0 +1,11 @@
+[
+  {
+    "repository":"eurekadevelopment/android_vendor_samsung_exynos7885",
+    "target_path":"vendor/samsung"
+  },
+  {
+    "repository":"eurekadevelopment/Eureka-Kernel-Exynos7885-Q-R-S",
+    "target_path":"kernel/Samsung/exynos7885",
+    "branch":"R9.2_rom"
+  }
+]
